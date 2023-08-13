@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useData } from "../context/DataContext";
 import { RxCross2 } from "../utils/icons";
+import { toast } from "react-hot-toast";
 
 function AddMovieModal({ closeModal }) {
   const { state, dispatch } = useData();
@@ -27,18 +28,20 @@ function AddMovieModal({ closeModal }) {
 
   function submitMovie(e) {
     e.preventDefault();
+    const imageUrlRegex = /\bhttps?:\/\/\S+\.(?:png|jpe?g|gif|webp)\b/;
     const media = newMovie.imageURL;
-    if (media === "") {
+    if (!imageUrlRegex.test(media)) {
       dispatch({
         type: "ADD_NEW_MOVIE",
         payload: {
           ...newMovie,
-          imageURL: "https://picsum.photos/id/237/200/300",
+          imageURL: `https://picsum.photos/200/300/?random`,
         },
       });
     } else {
       dispatch({ type: "ADD_NEW_MOVIE", payload: newMovie });
     }
+    toast.success("Added new Movie successfully");
     closeModal();
   }
 

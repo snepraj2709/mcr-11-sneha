@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { DataReducer } from "../reducer/DataReducer";
 import { movies } from "../data/data";
+import { toast } from "react-hot-toast";
 
 export const DataContext = createContext();
 
@@ -12,17 +13,21 @@ export const DataProvider = ({ children }) => {
 
   const addToWatchlist = (video) => {
     dispatch({ type: "ADD_TO_WATCHLIST", payload: video });
+    toast.success("Added to Watchlist");
   };
   const removeFromWatchlist = (video) => {
     dispatch({ type: "REMOVE_FROM_WATCHLIST", payload: video });
+    toast.success("Removed from Watchlist");
   };
 
   const removeStar = (video) => {
     dispatch({ type: "REMOVE_STAR", payload: video });
+    toast.success("Added to Star");
   };
 
   const addStar = (video) => {
     dispatch({ type: "ADD_STAR", payload: video });
+    toast.success("Removed from Starred");
   };
 
   useEffect(() => {

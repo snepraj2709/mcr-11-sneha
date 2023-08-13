@@ -52,7 +52,6 @@ export const DataReducer = (state, { type, payload }) => {
       return { ...state, searchInput: payload };
     }
     case "ADD_NEW_MOVIE": {
-      console.log(payload);
       return {
         ...state,
         allMovies: [...state.allMovies, payload],
