@@ -1,5 +1,8 @@
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
+    case "FETCH_INITIAL_DATA":
+      return { ...payload };
+
     case "ADD_TO_WATCHLIST": {
       const updatedMovies = state?.allMovies.map((movie) =>
         movie.id === payload.id ? { ...payload, watchLater: true } : movie

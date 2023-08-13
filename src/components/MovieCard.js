@@ -6,13 +6,30 @@ import {
 } from "../utils/icons";
 import { useData } from "../context/DataContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 function MovieCard({ data }) {
   const { id, title, imageURL, summary, watchLater, starred } = data;
-  const { addToWatchlist, removeFromWatchlist, removeStar, addStar } =
-    useData();
+  const { dispatch } = useData();
   const navigate = useNavigate();
-  // console.log(data);
+  const addToWatchlist = (video) => {
+    dispatch({ type: "ADD_TO_WATCHLIST", payload: video });
+    toast.success("Added to Watchlist");
+  };
+  const removeFromWatchlist = (video) => {
+    dispatch({ type: "REMOVE_FROM_WATCHLIST", payload: video });
+    toast.success("Removed from Watchlist");
+  };
+
+  const removeStar = (video) => {
+    dispatch({ type: "REMOVE_STAR", payload: video });
+    toast.success("Added to Star");
+  };
+
+  const addStar = (video) => {
+    dispatch({ type: "ADD_STAR", payload: video });
+    toast.success("Removed from Starred");
+  };
 
   return (
     <div className="flex flex-col p-2 drop-shadow-md shadow-lg max-w-md rounded-lg overflow-hidden bg-slate-100 h-100 dark:bg-slate-800">
