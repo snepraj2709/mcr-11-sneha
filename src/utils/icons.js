@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { MdWatchLater, MdOutlineWatchLater, MdSearch } from "react-icons/md";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { RxCross2 } from "react-icons/rx";
 
 export {
   FaSun,
@@ -21,4 +22,5 @@ export {
   FaImdb,
   AiFillStar,
   AiOutlineStar,
+  RxCross2,
 };

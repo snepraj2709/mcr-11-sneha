@@ -37,7 +37,7 @@ export default function Home() {
 
     const ratingFiltered =
       rating !== "all"
-        ? yearFiltered?.filter((movie) => movie.rating === rating)
+        ? yearFiltered?.filter((movie) => movie.rating === parseInt(rating))
         : yearFiltered;
 
     filteredArray.push(...ratingFiltered);

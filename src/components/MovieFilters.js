@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { useData } from "../context/DataContext";
+import { useState } from "react";
+import AddMovieModal from "./AddMovieModal";
 
 function MovieFilters() {
   const { state, dispatch } = useData();
-  const navigate = useNavigate();
+  const [addMovie, setAddMovie] = useState(false);
 
   const allGenre = state?.allMovies.reduce(
     (acc, curr) =>
@@ -33,61 +34,72 @@ function MovieFilters() {
     dispatch({ type: "SELECT_RATING", payload: e.target.value });
   };
 
+  const close = () => {
+    setAddMovie(false);
+  };
+
   return (
-    <div className="flex justify-between align-middle py-3">
-      <p className="font-bold text-2xl">Movies</p>
-      <select
-        className="bg-inherit cursor-pointer w-auto"
-        onChange={(e) => genreChangeHandler(e)}>
-        <option className="dark:bg-slate-700 dark:text-white" value="all">
-          All Genre
-        </option>
-        {allGenre?.map((genre, index) => (
-          <option
-            className="dark:bg-slate-700 dark:text-white"
-            value={genre}
-            key={index}>
-            {genre}
+    <div>
+      <div className="flex justify-between align-middle py-3">
+        <p className="font-bold text-2xl">Movies</p>
+        <select
+          className="bg-inherit cursor-pointer w-auto"
+          onChange={(e) => genreChangeHandler(e)}>
+          <option className="dark:bg-slate-700 dark:text-white" value="all">
+            All Genre
           </option>
-        ))}
-      </select>
+          {allGenre?.map((genre, index) => (
+            <option
+              className="dark:bg-slate-700 dark:text-white"
+              value={genre}
+              key={index}>
+              {genre}
+            </option>
+          ))}
+        </select>
 
-      <select
-        className="bg-inherit cursor-pointer"
-        onChange={(e) => releaseYearChangeHandler(e)}>
-        <option className="dark:bg-slate-700 dark:text-white" value="all">
-          Release Year
-        </option>
-        {allReleaseYears?.map((releaseYear, index) => (
-          <option
-            className="dark:bg-slate-700 dark:text-white"
-            value={releaseYear}
-            key={index}>
-            {releaseYear}
+        <select
+          className="bg-inherit cursor-pointer"
+          onChange={(e) => releaseYearChangeHandler(e)}>
+          <option className="dark:bg-slate-700 dark:text-white" value="all">
+            Release Year
           </option>
-        ))}
-      </select>
+          {allReleaseYears?.map((releaseYear, index) => (
+            <option
+              className="dark:bg-slate-700 dark:text-white"
+              value={releaseYear}
+              key={index}>
+              {releaseYear}
+            </option>
+          ))}
+        </select>
 
-      <select
-        className="bg-inherit cursor-pointer"
-        onChange={(e) => ratingChangeHandler(e)}>
-        <option className="dark:bg-slate-700 dark:text-white" value="all">
-          Rating
-        </option>
-        {allRatings?.map((rating) => (
-          <option
-            className="dark:bg-slate-700 dark:text-white"
-            value={rating}
-            key={rating}>
-            {rating}
+        <select
+          className="bg-inherit cursor-pointer"
+          onChange={(e) => ratingChangeHandler(e)}>
+          <option className="dark:bg-slate-700 dark:text-white" value="all">
+            Rating
           </option>
-        ))}
-      </select>
-      <button
-        className="bg-blue-500 p-3 text-white rounded-md cursor-pointer"
-        onClick={() => navigate("/movie/add")}>
-        Add a Movie
-      </button>
+          {allRatings?.map((rating) => (
+            <option
+              className="dark:bg-slate-700 dark:text-white"
+              value={rating}
+              key={rating}>
+              {rating}
+            </option>
+          ))}
+        </select>
+        <button
+          className="bg-blue-500 p-3 text-white rounded-md cursor-pointer"
+          onClick={() => setAddMovie(true)}>
+          Add a Movie
+        </button>
+      </div>
+      {addMovie ? (
+        <div>
+          <AddMovieModal closeModal={close} className="fixed z-40" />
+        </div>
+      ) : null}
     </div>
   );
 }
