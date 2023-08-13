@@ -62,7 +62,7 @@ function MovieFilters({ page }) {
           className="bg-inherit cursor-pointer"
           onChange={(e) => releaseYearChangeHandler(e)}>
           <option className="dark:bg-slate-700 dark:text-white" value="all">
-            Release Year
+            All Years
           </option>
           {allReleaseYears?.map((releaseYear, index) => (
             <option
@@ -78,9 +78,9 @@ function MovieFilters({ page }) {
           className="bg-inherit cursor-pointer"
           onChange={(e) => ratingChangeHandler(e)}>
           <option className="dark:bg-slate-700 dark:text-white" value="all">
-            Rating
+            All Rating
           </option>
-          {allRatings?.map((rating) => (
+          {allRatings.reverse()?.map((rating) => (
             <option
               className="dark:bg-slate-700 dark:text-white"
               value={rating}

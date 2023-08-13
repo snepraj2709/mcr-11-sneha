@@ -7,7 +7,7 @@ import { useTheme } from "../context/ThemeContext";
 
 function Header() {
   const { darkTheme, setDarkTheme } = useTheme();
-  const { state, dispatch } = useData();
+  const { dispatch } = useData();
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,6 +15,7 @@ function Header() {
   function searchMovie(e) {
     setInput(e.target.value);
     dispatch({ type: "SEARCH_MOVIE", payload: e.target.value });
+    navigate("/");
   }
 
   return (

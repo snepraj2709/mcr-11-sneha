@@ -18,7 +18,7 @@ function Footer() {
           <FaTwitter className="w-6 h-6 cursor-pointer" />
         </a>
       </div>
-      <p> &copy; 2023 | Videotune</p>
+      <p> &copy; 2023 | IMDB</p>
     </div>
   );
 }
