@@ -1,13 +1,43 @@
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
-    case "InitialDataFetch": {
-      if (payload) {
-        return {
-          ...state,
-          payload,
-        };
-      }
-      break;
+    case "ADD_TO_WATCHLIST": {
+      const updatedMovies = state?.allMovies.map((movie) =>
+        movie.id === payload.id ? { ...payload, watchLater: true } : movie
+      );
+      return {
+        ...state,
+        allMovies: updatedMovies,
+      };
+    }
+
+    case "REMOVE_FROM_WATCHLIST": {
+      const updatedMovies = state?.allMovies.map((movie) =>
+        movie.id === payload.id ? { ...payload, watchLater: false } : movie
+      );
+      return {
+        ...state,
+        allMovies: updatedMovies,
+      };
+    }
+
+    case "ADD_STAR": {
+      const updatedMovies = state?.allMovies.map((movie) =>
+        movie.id === payload.id ? { ...payload, starred: true } : movie
+      );
+      return {
+        ...state,
+        allMovies: updatedMovies,
+      };
+    }
+
+    case "REMOVE_STAR": {
+      const updatedMovies = state?.allMovies.map((movie) =>
+        movie.id === payload.id ? { ...payload, starred: false } : movie
+      );
+      return {
+        ...state,
+        allMovies: updatedMovies,
+      };
     }
 
     default:

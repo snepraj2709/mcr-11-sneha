@@ -7,6 +7,7 @@ import {
   FaImdb,
 } from "react-icons/fa";
 import { MdWatchLater, MdOutlineWatchLater, MdSearch } from "react-icons/md";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 export {
   FaSun,
@@ -18,4 +19,6 @@ export {
   MdOutlineWatchLater,
   MdSearch,
   FaImdb,
+  AiFillStar,
+  AiOutlineStar,
 };
