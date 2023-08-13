@@ -2,6 +2,8 @@ import "./styles.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
+import Watchlater from "./pages/Watchlater";
+import Starred from "./pages/Starred";
 
 export default function App() {
   return (
@@ -9,6 +11,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:movieId" element={<MovieDetail />} />
+        <Route path="/watchlater" element={<Watchlater />} />
+        <Route path="/starred" element={<Starred />} />
       </Routes>
     </div>
   );

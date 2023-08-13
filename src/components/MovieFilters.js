@@ -2,7 +2,7 @@ import { useData } from "../context/DataContext";
 import { useState } from "react";
 import AddMovieModal from "./AddMovieModal";
 
-function MovieFilters() {
+function MovieFilters({ page }) {
   const { state, dispatch } = useData();
   const [addMovie, setAddMovie] = useState(false);
 
@@ -41,7 +41,7 @@ function MovieFilters() {
   return (
     <div>
       <div className="flex justify-between align-middle py-3">
-        <p className="font-bold text-2xl">Movies</p>
+        <p className="font-bold text-2xl">{page}</p>
         <select
           className="bg-inherit cursor-pointer w-auto"
           onChange={(e) => genreChangeHandler(e)}>

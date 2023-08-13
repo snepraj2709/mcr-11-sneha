@@ -40,9 +40,15 @@ function Header() {
           />
         </div>
         <div className="flex md:mr-10 justify-between space-x-4">
-          <p>Movies</p>
-          <p>Watchlist</p>
-          <p>Starred</p>
+          <p onClick={() => navigate("/")} className="cursor-pointer">
+            Movies
+          </p>
+          <p onClick={() => navigate("/watchlater")} className="cursor-pointer">
+            Watchlist
+          </p>
+          <p onClick={() => navigate("/starred")} className="cursor-pointer">
+            Starred
+          </p>
           <button onClick={() => setDarkTheme(!darkTheme)}>
             {darkTheme ? (
               <FaSun className="w-5 h-5 mx-2 my-auto" />

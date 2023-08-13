@@ -25,18 +25,19 @@ function AddMovieModal({ closeModal }) {
     []
   );
 
-  const uploadImage = (e) => {
-    if (newMovie?.imageUrl === "") {
-      setNewMovie({
-        ...newMovie,
-        imageUrl: "https://picsum.photos/id/237/200/300",
-      });
-    }
-  };
-
   function submitMovie() {
-    console.log(newMovie);
-    dispatch({ type: "ADD_NEW_MOVIE", payload: newMovie });
+    const media = newMovie.imageURL;
+    if (media === "") {
+      dispatch({
+        type: "ADD_NEW_MOVIE",
+        payload: {
+          ...newMovie,
+          imageURL: "https://picsum.photos/id/237/200/300",
+        },
+      });
+    } else {
+      dispatch({ type: "ADD_NEW_MOVIE", payload: newMovie });
+    }
     closeModal();
   }
 
@@ -152,7 +153,6 @@ function AddMovieModal({ closeModal }) {
             value={newMovie.imageURL}
             onChange={(e) => {
               setNewMovie({ ...newMovie, imageURL: e.target.value });
-              uploadImage(e);
             }}
           />
         </div>

@@ -56,7 +56,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="overflow-hidden flex flex-col lg:max-w-6xl grow mx-auto">
-        <MovieFilters />
+        <MovieFilters page="All Movies" />
         <Feed list={filteredMovies} />
       </div>
       <Footer className="mt-auto" />
