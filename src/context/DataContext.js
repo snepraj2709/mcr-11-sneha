@@ -17,7 +17,7 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const LocalMovieData = localStorage.getItem("movieDataState");
-    console.log("LocalMovieData", JSON.parse(LocalMovieData));
+
     if (LocalMovieData) {
       dispatch({
         type: "FETCH_INITIAL_DATA",

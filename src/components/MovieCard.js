@@ -23,12 +23,12 @@ function MovieCard({ data }) {
 
   const removeStar = (video) => {
     dispatch({ type: "REMOVE_STAR", payload: video });
-    toast.success("Added to Star");
+    toast.success("Removed from Starred");
   };
 
   const addStar = (video) => {
     dispatch({ type: "ADD_STAR", payload: video });
-    toast.success("Removed from Starred");
+    toast.success("Added to Star");
   };
 
   return (
@@ -39,7 +39,7 @@ function MovieCard({ data }) {
         <img
           src={imageURL}
           alt={title}
-          className="object-contain rounded-lg w-full h-96 group-hover:scale-110 transition-transform duration-150 ease-in-out"
+          className="object-contain rounded-lg w-full h-96 group-hover:scale-110 transition-transform duration-150 ease-in-out mb-5"
         />
         <p className="text-lg font-medium py-1 line-clamp-2">{title}</p>
         <p className="text-base font-light py-1 line-clamp-4">{summary}</p>
