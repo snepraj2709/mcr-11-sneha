@@ -6,7 +6,7 @@ function MovieFilters({ page }) {
   const { state, dispatch } = useData();
   const [addMovie, setAddMovie] = useState(false);
 
-  const allGenre = state?.allMovies.reduce(
+  const allGenre = state?.allMovies?.reduce(
     (acc, curr) =>
       curr.genre?.reduce(
         (acc, el) => (acc.includes(el) ? acc : [...acc, el]),

@@ -46,6 +46,7 @@ export default function Home() {
   useEffect(() => {
     filteredMovieArray();
   }, [
+    state?.allMovies,
     state?.searchInput,
     state.selectedGenre,
     state.selectedYear,

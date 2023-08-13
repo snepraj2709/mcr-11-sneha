@@ -36,7 +36,7 @@ export const DataProvider = ({ children }) => {
         searchInput: "",
       })
     );
-  }, [Data]);
+  }, [state?.allMovies, Data]);
 
   return (
     <DataContext.Provider

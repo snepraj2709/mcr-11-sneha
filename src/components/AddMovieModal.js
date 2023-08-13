@@ -8,7 +8,7 @@ function AddMovieModal({ closeModal }) {
     id: state?.allMovies?.length + 1,
     title: "",
     year: "",
-    genre: "",
+    genre: [],
     rating: "",
     director: "",
     writer: "",
@@ -25,7 +25,8 @@ function AddMovieModal({ closeModal }) {
     []
   );
 
-  function submitMovie() {
+  function submitMovie(e) {
+    e.preventDefault();
     const media = newMovie.imageURL;
     if (media === "") {
       dispatch({
@@ -43,7 +44,9 @@ function AddMovieModal({ closeModal }) {
 
   return (
     <div className="bg-slate-400 p-10 rounded-lg shadow-lg fixed top-0 left-0 w-full h-full flex justify-center items-center bg-opacity-80 z-10">
-      <form className="space-y-2 bg-slate-200 dark:bg-slate-800 p-10 w-2/3 rounded-md">
+      <form
+        onSubmit={(e) => submitMovie(e)}
+        className="bg-slate-200 dark:bg-slate-800 p-10 w-2/3 rounded-md overflow-auto max-h-screen">
         <div className="flex justify-between mb-5">
           <p className="font-bold text-xl">Add Movie</p>
           <RxCross2 className="w-6 h-6" onClick={() => closeModal()} />
@@ -75,7 +78,7 @@ function AddMovieModal({ closeModal }) {
           <select
             className="bg-inherit w-32"
             onChange={(e) =>
-              setNewMovie({ ...newMovie, genre: e.target.value })
+              setNewMovie({ ...newMovie, genre: [e.target.value] })
             }>
             {allGenre.map((genre, index) => (
               <option
@@ -158,8 +161,8 @@ function AddMovieModal({ closeModal }) {
         </div>
 
         <button
-          onClick={submitMovie}
-          className="bg-blue-500 p-3 text-white rounded-md w-36 cursor-pointer">
+          onClick={(e) => submitMovie(e)}
+          className="bg-blue-500 p-3 text-white rounded-md w-36 cursor-pointer mt-5">
           Add new Movie
         </button>
       </form>
