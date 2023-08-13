@@ -6,7 +6,7 @@ function Feed({ list }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 md:gap-4">
         {list?.length > 0 ? (
           list?.map((movie) => (
-            <div key={movie._id}>
+            <div key={movie.id}>
               <MovieCard data={movie} className="object-cover w-25 h-25" />
             </div>
           ))

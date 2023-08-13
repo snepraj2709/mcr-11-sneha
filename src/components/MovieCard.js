@@ -38,7 +38,9 @@ function MovieCard({ data }) {
           ) : (
             <MdOutlineWatchLater className="w-6 h-6 text-blue-700 dark:text-white cursor-pointer" />
           )}
-          <p className="px-2">WatchLater</p>
+          <p className="px-2">
+            {watchLater ? "Added to Watchlist" : "WatchLater"}
+          </p>
         </button>
         <button
           className="flex cursor-pointer bg-blue-100 dark:bg-slate-900 rounded-full p-1"
@@ -48,7 +50,7 @@ function MovieCard({ data }) {
           ) : (
             <AiOutlineStar className="w-6 h-6 text-blue-700 dark:text-white cursor-pointer" />
           )}
-          <p className="px-2">Star</p>
+          <p className="px-2">{starred ? "Starred" : "Star"}</p>
         </button>
       </div>
     </div>

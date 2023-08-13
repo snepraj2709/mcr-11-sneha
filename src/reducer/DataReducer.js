@@ -39,6 +39,15 @@ export const DataReducer = (state, { type, payload }) => {
         allMovies: updatedMovies,
       };
     }
+    case "SELECT_GENRE": {
+      return { ...state, selectedGenre: payload };
+    }
+    case "SELECT_RELEASE_YEAR": {
+      return { ...state, selectedYear: payload };
+    }
+    case "SELECT_RATING": {
+      return { ...state, selectedRating: payload };
+    }
 
     default:
       return state;

@@ -6,7 +6,7 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const Data = movies;
-  const movieDataLocal = JSON.parse(localStorage.getItem("movideDataState"));
+  const movieDataLocal = JSON.parse(localStorage.getItem("movieDataState"));
 
   const [state, dispatch] = useReducer(DataReducer, movieDataLocal);
 
@@ -27,9 +27,12 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem(
-      "movideDataState",
+      "movieDataState",
       JSON.stringify({
         allMovies: Data,
+        selectedGenre: "all",
+        selectedYear: "all",
+        selectedRating: "all",
       })
     );
   }, [Data]);
