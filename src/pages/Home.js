@@ -9,7 +9,7 @@ export default function Home() {
   const { state } = useData();
   const [filteredMovies, setFilteredMovies] = useState([...state?.allMovies]);
 
-  const filteredMovieArray = () => {
+  useEffect(() => {
     const filteredArray = [];
     const genre = state?.selectedGenre;
     const year = state?.selectedYear;
@@ -42,15 +42,12 @@ export default function Home() {
 
     filteredArray.push(...ratingFiltered);
     setFilteredMovies(filteredArray);
-  };
-  useEffect(() => {
-    filteredMovieArray();
   }, [
     state?.allMovies,
     state?.searchInput,
-    state.selectedGenre,
-    state.selectedYear,
-    state.selectedRating,
+    state?.selectedGenre,
+    state?.selectedYear,
+    state?.selectedRating,
   ]);
 
   return (

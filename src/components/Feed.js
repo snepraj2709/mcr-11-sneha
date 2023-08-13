@@ -11,8 +11,8 @@ function Feed({ list }) {
             </div>
           ))
         ) : (
-          <div>
-            <p className="font-semibold text-lg ml-4 mt-4">Ooop! No Movies.</p>
+          <div className="col-span-8 grow">
+            <p className="flex font-semibold text-lg mt-4">Ooop! No Movies.</p>
           </div>
         )}
       </div>
