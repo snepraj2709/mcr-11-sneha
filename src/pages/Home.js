@@ -14,11 +14,19 @@ export default function Home() {
     const genre = state?.selectedGenre;
     const year = state?.selectedYear;
     const rating = state?.selectedRating;
+    const input = state?.searchInput;
+
+    const searchedMovies =
+      input === ""
+        ? [...state?.allMovies]
+        : state?.allMovies?.filter((movie) =>
+            movie.title.toLowerCase().includes(input.toLowerCase())
+          );
 
     const genreFiltered =
       genre === "all"
-        ? [...state?.allMovies]
-        : state?.allMovies?.filter((movie) => {
+        ? [...searchedMovies]
+        : searchedMovies?.filter((movie) => {
             return movie.genre.includes(genre) ? movie : null;
           });
 
@@ -37,7 +45,12 @@ export default function Home() {
   };
   useEffect(() => {
     filteredMovieArray();
-  }, [state.selectedGenre, state.selectedYear, state.selectedRating]);
+  }, [
+    state?.searchInput,
+    state.selectedGenre,
+    state.selectedYear,
+    state.selectedRating,
+  ]);
 
   return (
     <div className="min-h-screen flex flex-col">

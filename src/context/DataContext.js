@@ -33,6 +33,7 @@ export const DataProvider = ({ children }) => {
         selectedGenre: "all",
         selectedYear: "all",
         selectedRating: "all",
+        searchInput: "",
       })
     );
   }, [Data]);

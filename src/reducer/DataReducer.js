@@ -48,6 +48,9 @@ export const DataReducer = (state, { type, payload }) => {
     case "SELECT_RATING": {
       return { ...state, selectedRating: payload };
     }
+    case "SEARCH_MOVIE": {
+      return { ...state, searchInput: payload };
+    }
 
     default:
       return state;

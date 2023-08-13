@@ -12,21 +12,17 @@ function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //   const filteredVideos = state?.allVideos.filter((video) =>
-  //     video.title.toLowerCase().includes(input.toLowerCase())
-  //   );
-
-  function searchVideo(e) {
+  function searchMovie(e) {
     setInput(e.target.value);
-    e.target.value = ""
-      ? dispatch({ type: "FilterMovie", payload: "" })
-      : dispatch({ type: "FilterMovie", payload: [] });
+    dispatch({ type: "SEARCH_MOVIE", payload: e.target.value });
   }
 
   return (
     <div className="dark:bg-slate-800">
       <div className="flex flex-row justify-between my-2 lg:max-w-6xl w-100 mx-auto">
-        <div className="flex ml-3 md:ml-10" onClick={() => navigate("/")}>
+        <div
+          className="flex ml-3 md:ml-10 cursor-pointer"
+          onClick={() => navigate("/")}>
           <FaImdb className="w-6 h-6 mx-1 my-auto text-red-600" />
           <h2 className="hidden md:inline-block my-auto font-sans text-lg font-bold">
             IMDB
@@ -38,10 +34,8 @@ function Header() {
           <input
             type="text"
             value={input}
-            onClick={() =>
-              location?.pathname !== "/explore" && navigate("/explore")
-            }
-            onChange={(e) => searchVideo(e)}
+            onClick={() => location?.pathname !== "/" && navigate("/")}
+            onChange={(e) => searchMovie(e)}
             className="bg-transparent outline-none"
           />
         </div>
