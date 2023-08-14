@@ -14,10 +14,8 @@ export const DataProvider = ({ children }) => {
     searchInput: "",
   };
   const [state, dispatch] = useReducer(DataReducer, dataInitialState);
-
+  const LocalMovieData = localStorage.getItem("movieDataState");
   useEffect(() => {
-    const LocalMovieData = localStorage.getItem("movieDataState");
-
     if (LocalMovieData) {
       dispatch({
         type: "FETCH_INITIAL_DATA",
@@ -34,8 +32,12 @@ export const DataProvider = ({ children }) => {
           searchInput: "",
         })
       );
+      dispatch({
+        type: "FETCH_INITIAL_DATA",
+        payload: { ...dataInitialState, allMovies: Data },
+      });
     }
-  }, [Data]);
+  }, [Data, LocalMovieData]);
 
   return (
     <DataContext.Provider
