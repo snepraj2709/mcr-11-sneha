@@ -30,16 +30,36 @@ function AddMovieModal({ closeModal }) {
     e.preventDefault();
     const imageUrlRegex = /\bhttps?:\/\/\S+\.(?:png|jpe?g|gif|webp)\b/;
     const media = newMovie.imageURL;
+    const updatedState = {
+      allMovies: [...state?.allMovies],
+      selectedGenre: "all",
+      selectedYear: "all",
+      selectedRating: "all",
+      searchInput: "",
+    };
     if (!imageUrlRegex.test(media)) {
-      dispatch({
-        type: "ADD_NEW_MOVIE",
-        payload: {
+      const updatedMovies = [
+        ...state?.allMovies,
+        {
           ...newMovie,
           imageURL: `https://picsum.photos/200/300/?random`,
         },
+      ];
+      localStorage.setItem(
+        "movieDataState",
+        JSON.stringify({ ...updatedState, allMovies: updatedMovies })
+      );
+      dispatch({
+        type: "ADD_NEW_MOVIE",
+        payload: updatedMovies,
       });
     } else {
-      dispatch({ type: "ADD_NEW_MOVIE", payload: newMovie });
+      const updatedMovies = [...state?.allMovies, { ...newMovie }];
+      localStorage.setItem(
+        "movieDataState",
+        JSON.stringify({ ...updatedState, allMovies: updatedMovies })
+      );
+      dispatch({ type: "ADD_NEW_MOVIE", payload: updatedMovies });
     }
     toast.success("Added new Movie successfully");
     closeModal();
